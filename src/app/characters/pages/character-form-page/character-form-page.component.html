@@ -1,0 +1,39 @@
+<h1 class="text-center">Formulario de personaje</h1>
+
+<div class="container">
+  <div class="row">
+    <form class="row g-3" [formGroup]="characterForm" (ngSubmit)="saveCharacter()">
+      <div class="mb-3">
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon3">Url image*</span>
+          <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3 basic-addon4"
+            formControlName="url">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Nombre del personaje*</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" formControlName="name">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlSource" class="form-label">Pertence a*</label>
+        <input type="text" class="form-control" id="exampleFormControlSource" formControlName="source">
+      </div>
+      <div class="input-group mb-3">
+        <input type="date" class="form-control" placeholder="Fecha de nacimiento" formControlName="birthdate"
+          aria-label="Fecha de nacimiento" aria-describedby="basic-addon2">
+        <span class="input-group-text">---</span>
+        <input type="number" class="form-control" placeholder="Edad" aria-label="Edad" formControlName="age"
+          aria-describedby="basic-addon2">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Descripción del personaje</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+          formControlName="description"></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,94 @@
+<h1 class="text-center">Pokemons</h1>
+
+<div class="container">
+  <div class="row mb-4">
+    <ul class="nav nav-underline">
+      @if(isLoadingPokemonPagination()) {
+      <div class="col">
+        <div class="text-center fw-bold fs-4">
+          Cargando Pokemons...
+        </div>
+      </div>
+      } @else {
+      @for (item of (pokemonPaginationResults()); track item.name) {
+      <li class="nav-item">
+        <a class="nav-link" href="javaScript:void(0)" (click)="loadingPokemonDetail(item.name)">{{ item.name }}</a>
+      </li>
+      } @empty {
+      <div class="col">
+        <div class="text-center fw-bold fs-4">
+          No hay más pokemons
+        </div>
+      </div>
+      }
+      }
+    </ul>
+  </div>
+  @if(!isLoadingPokemonPagination()) {
+  <div class="row text-center">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        @if(hasPreviousPage()) {
+        <li class="page-item"><a class="page-link" href="javaScript:void(0)" (click)="previousPage()">Previous</a></li>
+        }
+        <li class="page-item"><a class="page-link" href="javaScript:void(0)">{{currentPage()}}</a></li>
+        @if(hasNextPage()) {
+        <li class="page-item"><a class="page-link" href="javaScript:void(0)" (click)="nextPage()">Next</a></li>
+        }
+      </ul>
+    </nav>
+  </div>
+  }
+  <hr>
+
+  <h1 class="text-center">Lista de pokemos seleccionados</h1>
+  <div class="row">
+    <div class="col text-center">
+      <button class="btn btn-primary mb-2" (click)="clearPokemons()">Limpiar lista de pokemons</button>
+    </div>
+  </div>
+  <div class="row">
+    @if(isLoadingPokemonDetail()) {
+    <div class="col">
+      <div class="text-center fw-bold fs-4">
+        Cargando lista de Pokemons...
+      </div>
+    </div>
+    } @else {
+    @for (pokemon of pokemons(); track pokemon.id; let index = $index, first = $first) {
+    @if(first) {
+    <div class="row">
+      <div class="col text-center">
+        <p class="fw-bold fs-5">Total de pokemos en la lista: {{pokemonsCount()}}</p>
+      </div>
+    </div>
+    }
+    <div class="col-12 col-md-4 my-2">
+      <div class="card" style="width: 18rem;">
+        <img [src]="pokemon.sprites.other?.home?.front_default" class="card-img-top object-fit-cover" lazy="lazy">
+        <div class="card-body">
+          <h5 class="card-title fs-3 text-secondary fw-bold text-center text-uppercase">{{pokemon.name}}</h5>
+          <p class="card-text fw-bold">
+            Habilidades:
+          </p>
+          <ul>
+            @for(habilities of pokemon.abilities; track $index) {
+            <li class="fst-italic">{{ habilities.ability?.name }}</li>
+            }
+          </ul>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-danger" (click)="removePokemon(index)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div class="col">
+      <div class="text-center fw-bold fs-4">
+        No hay pokemons seleccionados
+      </div>
+    </div>
+    }
+    }
+  </div>
+</div>

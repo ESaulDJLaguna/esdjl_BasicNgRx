@@ -1,0 +1,21 @@
+<div class="card" style="width: 18rem;">
+  <img [src]="character().url" class="card-img-top object-fit-cover" alt="...">
+  <div class="card-body">
+    <h5 class="card-title fs-3 text-secondary fw-bold">{{character().name}}</h5>
+    <p class="card-text">
+      Personaje pertenenciente a la serie:
+      <br><span class="fw-bolder fs-5 text-info">{{character().source}}</span>
+    </p>
+    @if(character().birthdate) {
+    <p>Cumpleaños: {{character()!.birthdate}}</p>
+    }
+    @if(character().age) {
+    <p>Edad: {{character()!.age}}</p>
+    }
+    @if(character().description) {
+    <p>{{character()!.description}}</p>
+    }
+    <button class="btn btn-primary me-2" [routerLink]="[AppRoutes.EditCharacter.name, character().id]">Editar</button>
+    <button class="btn btn-danger" (click)="remove()">Eliminar</button>
+  </div>
+</div>

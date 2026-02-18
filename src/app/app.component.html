@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="">Home</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        @for (route of routes; track route.path) {
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="route.path" routerLinkActive="text-danger">{{ route.title }}</a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

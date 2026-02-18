@@ -141,7 +141,7 @@ export interface AppState {
 1. **Clonar el repositorio**
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/ESaulDJLaguna/esdjl_BasicNgRx
 cd esdjl-BasicNgRx
 ```
 
